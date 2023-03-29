@@ -1,0 +1,184 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE famous_authors (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT,
+    last_name TEXT,
+    nationality TEXT,
+    birthdate INTEGER,
+    deathdate INTEGER);
+    
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("William", "Shakespeare", "English", "1564", "1616");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("Charles", "Dickens", "English", "1812", "1870");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("Agatha", "Christie", "English", "1890", "1976");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("Fyodor", "Dostoevsky", "Russian", "1821", "1881");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("William", "Faulkner", "American", "1897", "1962");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("Toni", "Morrison", "American", "1931", "2019");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("Leo", "Tolstoy", "Russian", "1828", "1910");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("James", "Joyce", "Irish", "1882", "1941");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("Chinua", "Achebe", "Nigerian", "1930", "2013");
+INSERT INTO famous_authors (first_name, last_name, nationality, birthdate, deathdate)
+    VALUES ("Adeline", "Woolf", "English", "1882", "1941");
+    
+CREATE table novels (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    author_id INTEGER,
+    title TEXT,
+    published_date INTEGER,
+    genre TEXT);
+    
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (1, "Hamlet", 1603, "Tragedy");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (1, "MacBeth", 1623, "Tragedy");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (2, "Bleak House", 1853, "Crime Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (2, "Great Expectations", 1861, "Romance");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (3, "A Murder is Announced", 1950, "Crime Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (3, "The Body in the Library", 1942, "Crime Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (4, "The Brothers Karamozov", 1880, "Philosophical Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (4, "Notes from Underground", 1864, "Philosophical Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (5, "The Sound and the Fury", 1929, "Gothic Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (5, "As I Lay Dying", 1930, "Gothic Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (6, "The Bluest Eye", 1970, "Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (6, "Beloved", 1987, "Historical Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (7, "War and Peace", 1867, "Historical Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (7, "Anna Karenina", 1877, "Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (8, "Ulysses", 1920, "Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (8, "Dubliners", 1914, "Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (9, "Things Fall Apart", 1958, "Historical Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (9, "Arrow of God", 1964, "Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (10, "Mrs. Dalloway", 1925, "Psychological Fiction");
+INSERT INTO novels (author_id, title, published_date, genre)
+    VALUES (10, "To the Lighthouse", 1927, "Fiction");
+
+CREATE TABLE author_novel (id INTEGER PRIMARY KEY AUTOINCREMENT, author_id INTEGER, book_id INTEGER);
+
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (1, 1);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (1, 2);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (2, 3);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (2, 4);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (3, 5);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (3, 6);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (4, 7);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (4, 8);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (5, 9);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (5, 10);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (6, 11);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (6, 12);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (7, 13);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (7, 14);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (8, 15);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (8, 16);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (9, 17);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (9, 18);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (10, 19);
+INSERT INTO author_novel (author_id, book_id)
+    VALUES (10, 20);
+
+SELECT * FROM famous_authors;
+SELECT * FROM novels;
+  
+/*LEFT OUTER JOIN to show authors and their works ONLY*/
+
+SELECT famous_authors.last_name, novels.title
+    FROM famous_authors
+    LEFT OUTER JOIN novels
+    ON famous_authors.id = novels.author_id;
+
+/*Which authors were born before 1800? between 1800 and 1900? after 1900?*/
+
+SELECT first_name, last_name, birthdate FROM famous_authors
+    WHERE birthdate < 1800;
+SELECT first_name, last_name, birthdate FROM famous_authors
+    WHERE birthdate > 1800 and birthdate < 1900;
+SELECT first_name, last_name, birthdate FROM famous_authors
+    WHERE birthdate > 1900;
+
+/*Which novels were published < 1800, >1800 and < 1900, > 1900*/
+
+SELECT title, published_date FROM novels
+    WHERE published_date < 1800;
+SELECT title, published_date FROM novels
+    WHERE published_date > 1800 and published_date < 1900;
+SELECT title, published_date FROM novels
+    WHERE published_date > 1900
+    ORDER BY published_date;
+
+/*Genres?*/
+
+SELECT title, genre FROM novels
+    WHERE genre IN ("Romance", "Tragedy");
+SELECT title, genre FROM novels
+    WHERE genre LIKE "Fiction";
+
+SELECT famous_authors.last_name, novels.title, novels.genre
+    FROM famous_authors
+    LEFT OUTER JOIN novels
+    ON famous_authors.id = novels.author_id
+    WHERE genre LIKE "Fiction";
+
+/*All titles with genre = "Fiction"?*/
+
+SELECT famous_authors.last_name, novels.title, novels.genre
+    FROM famous_authors
+    LEFT OUTER JOIN novels
+    ON famous_authors.id = novels.author_id
+    WHERE genre LIKE "%Fiction";
+
+SELECT famous_authors.last_name, novels.title, novels.genre, novels.published_date
+    FROM famous_authors
+    LEFT OUTER JOIN novels
+    ON famous_authors.id = novels.author_id
+    WHERE published_date > 1900
+    AND genre LIKE "Fiction"
+    ORDER BY published_date;
+
+SELECT famous_authors.last_name, novels.title, novels.genre, novels.published_date
+    FROM famous_authors
+    LEFT OUTER JOIN novels
+    ON famous_authors.id = novels.author_id
+    WHERE published_date > 1900
+    AND genre LIKE "Historical Fiction";
